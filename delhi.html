@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delhi Weather</title>
+    <link rel="stylesheet" href="wp.css">
+    <script src="weather-api.js"></script>
+    <script src="wp.js"></script>
+</head>
+<body>
+    <div class="weather-container">
+        <h1>Delhi Weather</h1>
+        
+        <!-- Current Weather Display -->
+        <div class="current-weather">
+            <h2>Current Conditions</h2>
+            <div id="current-weather-data">
+                <!-- Data will be populated by JavaScript -->
+            </div>
+            <button onclick="saveCurrentWeather()">Save Current Data to Database</button>
+        </div>
+
+        <!-- Historical Weather Display -->
+        <div class="historical-weather">
+            <h2>Historical Data (Last 7 Days)</h2>
+            <div id="historical-weather-data">
+                <!-- Data will be populated by JavaScript -->
+            </div>
+            <button onclick="loadHistoricalWeather()">Refresh Historical Data</button>
+        </div>
+    </div>
+
+    <script>
+        // Global variable to store current weather data
+        let currentWeather = {};
+
+        // Function to save current weather to database
+        async function saveCurrentWeather() {
+            if (!currentWeather.temp) {
+                alert('No current weather data available');
+                return;
+            }
+
+            const result = await WeatherAPI.saveWeatherData('Delhi', currentWeather);
+            if (result.success) {
+                alert('Weather data saved successfully!');
+                loadHistoricalWeather(); // Refresh historical data
+            } else {
+                alert('Error saving weather data: ' + (result.error || 'Unknown error'));
+            }
+        }
+
+        // Function to load and display historical weather
+        async function loadHistoricalWeather() {
+            try {
+                const history = await WeatherAPI.getHistoricalWeather('Delhi');
+                const container = document.getElementById('historical-weather-data');
+                
+                if (history.length === 0) {
+                    container.innerHTML = '<p>No historical data available</p>';
+                    return;
+                }
+
+                let html = '<table><tr><th>Date</th><th>Temp (°C)</th><th>Humidity</th><th>Wind (km/h)</th><th>Conditions</th></tr>';
+                
+                history.forEach(record => {
+                    html += `
+                        <tr>
+                            <td>${new Date(record.recorded_at).toLocaleString()}</td>
+                            <td>${record.temperature}</td>
+                            <td>${record.humidity}%</td>
+                            <td>${record.wind_speed}</td>
+                            <td>${record.conditions}</td>
+                        </tr>
+                    `;
+                });
+
+                html += '</table>';
+                container.innerHTML = html;
+            } catch (error) {
+                console.error('Error loading historical data:', error);
+                document.getElementById('historical-weather-data').innerHTML = 
+                    '<p>Error loading historical data</p>';
+            }
+        }
+
+        // When page loads, fetch and display current weather
+        window.onload = async function() {
+            try {
+                // Get current weather from your existing weather API
+                currentWeather = await getWeatherData('Delhi'); // Assuming this exists in wp.js
+                
+                // Display current weather
+                document.getElementById('current-weather-data').innerHTML = `
+                    <p>Temperature: ${currentWeather.temp}°C</p>
+                    <p>Humidity: ${currentWeather.humidity}%</p>
+                    <p>Wind Speed: ${currentWeather.windSpeed} km/h</p>
+                    <p>Conditions: ${currentWeather.conditions}</p>
+                `;
+
+                // Load historical data
+                loadHistoricalWeather();
+            } catch (error) {
+                console.error('Error initializing page:', error);
+            }
+        };
+    </script>
+</body>
+</html>

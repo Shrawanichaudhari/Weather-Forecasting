@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <meta charset="UTF-8">
+  <link rel=stylesheet type="text/css" href="wp.css">
+  <script>
+        function openPage() {
+        window.location.href = 'payment.html';
+    }
+
+    const lat = 26.7509;
+    const lon = 94.2037;
+
+    const apiKey = '3780bd09b9ccf7e98d5a87e796577503';
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+
+    fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('place').textContent = data.name;
+        document.getElementById('weather').textContent = data.weather[0].main;
+        document.getElementById('description').textContent = data.weather[0].description;
+        document.getElementById('temperature').textContent = Math.round(data.main.temp - 273.15) + '°C';
+        document.getElementById('maxTemperature').textContent = Math.round(data.main.temp_max - 273.15) + '°C';
+        document.getElementById('minTemperature').textContent = Math.round(data.main.temp_min - 273.15) + '°C';
+        document.getElementById('humidity').textContent = data.main.humidity + '%';
+        document.getElementById('groundLevel').textContent = data.main.grnd_level + ' mtrs';
+        document.getElementById('seaLevel').textContent = data.main.sea_level + ' mtrs';
+        document.getElementById('visibility').textContent = (data.visibility / 1000) + ' Km';
+        document.getElementById('windSpeed').textContent =  data.wind.speed + ' m/s';
+        document.getElementById('windDegree').textContent = data.wind.deg + '°';
+        document.getElementById('windGust').textContent = data.wind.gust + ' knots';
+    })
+    .catch(error => {
+        console.error('Error fetching weather data, API might not be working', error);
+        // Update an existing element with an error message
+        document.getElementById('error-message').textContent = 'Error fetching weather data, API might not be working: ' + error;
+    });
+  </script>
+  <video autoplay loop muted>
+    <source src="sky5.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</head>
+<button onclick="openPage()">Try <span>Premium</span></button>
+<select onchange="location=this.value">
+    <optgroup label="Union Territories">
+        <option value="WeatherPage.html">Delhi</option>
+        <option value="an.html">Andaman & Nicobar Islands</option>
+        <option value="chandigarh.html">Chandigarh</option>
+        <option value="dd.html">Daman & Diu</option>
+        <option value="jk.html">Jammu & Kashmir</option>
+        <option value="lakshdweep.html">Lakshdweep Island</option>
+        <option value="puducherry.html">Puducherry</option>
+    </optgroup>
+    <optgroup label="Andhra Pradesh">
+        <option value="amrawati.html">Amravati</option>
+        <option value="guntur.html">Guntur</option>
+        <option value="nellore.html">Nellore</option>
+        <option value="rajahmundri.html">Rajahmundri</option>
+        <option value="vijaywada.html">Vijaywada</option>
+    </optgroup>
+    <optgroup label="Arunachal Pradesh">
+        <option value="itanagar.html">Itanagar</option>
+        <option value="tawang.html">Tawang</option>
+        <option value="pasighat.html">Pasighat</option>
+        <option value="naharlagun.html">Naharlagun</option>
+        <option value="bomdila.html">Bomdila</option>
+    </optgroup>
+    <optgroup label="Assam">
+        <option value="guwahati.html">Guwahati</option>
+        <option value="dibrugarh.html">Dibrugarh</option>
+        <option value="jorhat.html">Jorhat</option>
+        <option value="silchar.html">Silchar</option>
+        <option value="tezpur.html">Tezpur</option>
+    </optgroup>
+    <optgroup label="Bihar">
+        <option value="arrah.html">Arrah</option>
+        <option value="begusarai.html">Begusarai</option>
+        <option value="bhagalpur.html">Bhagalpur</option>
+        <option value="patna.html">Patna</option>
+        <option value="munger.html">Munger</option>
+    </optgroup>
+    <optgroup label="Chattisgarh">
+        <option value="bilaspur.html">Bilaspur</option>
+        <option value="durg.html">Durg</option>
+        <option value="korba.html">Korba</option>
+        <option value="raipur.html">Raipur</option>
+        <option value="raigarh.html">Raigarh</option>
+    </optgroup>
+    <optgroup label="Gujarat">
+        <option value="ahmedabad.html">Ahmedabad</option>
+        <option value="surat.html">Surat</option>
+        <option value="vadodara.html">Vadodara</option>
+        <option value="rajkot.html">Rajkot</option>
+        <option value="bhavnagar.html">Bhavnagar</option>
+    </optgroup>    
+    <optgroup label="Goa">
+        <option value="goa.html">Goa</option>
+    </optgroup>      
+    <optgroup label="Haryana">
+        <option value="faridabad.html">Faridabad</option>
+        <option value="gurgaon.html">Gurgaon</option>
+        <option value="hisar.html">Hisar</option>
+        <option value="panchkula.html">Panchkula</option>
+        <option value="sonipat.html">Sonipat</option>
+    </optgroup>
+    <optgroup label="Himachal Pradesh">
+        <option value="dharamsala.html">Dharamsala</option>
+        <option value="kangra.html">Kangra</option>
+        <option value="shimla.html">Shimla</option>
+        <option value="solan.html">Solan</option>
+        <option value="una.html">Una</option>
+    </optgroup>
+    <optgroup label="Jharkhand">
+        <option value="bokaro.html">Bokaro</option>
+        <option value="dhanbad.html">Dhanbad</option>
+        <option value="jamshedpur.html">Jamshedpur</option>
+        <option value="ranchi.html">Ranchi</option>
+        <option value="hazaribagh.html">Hazaribagh</option>
+    </optgroup>
+    <optgroup label="Karnataka">
+        <option value="bengaluru.html">Bengaluru</option>
+        <option value="hubli.html">Hubli</option>
+        <option value="mangalore.html">Mangalore</option>
+        <option value="mysuru.html">Mysuru</option>
+        <option value="belgaum.html">Belgaum</option>
+    </optgroup>
+    <optgroup label="Kerala">
+        <option value="kochi.html">Kochi</option>
+        <option value="kozhikode.html">Kozhikode</option>
+        <option value="thrissur.html">Thrissur</option>
+        <option value="thiruvananthapuram.html">Thiruvananthapuram</option>
+        <option value="kollam.html">Kollam</option>
+    </optgroup>
+    <optgroup label="Maharashtra">
+        <option value="mumbai.html">Mumbai</option>
+        <option value="pune.html">Pune</option>
+        <option value="nagpur.html">Nagpur</option>
+        <option value="thane.html">Thane</option>
+        <option value="nashik.html">Nashik</option>
+    </optgroup>
+    <optgroup label="Manipur">
+        <option value="imphal.html">Imphal</option>
+    </optgroup>
+    <optgroup label="Madhya Pradesh">
+        <option value="bhopal.html">Bhopal</option>
+        <option value="indore.html">Indore</option>
+        <option value="jabalpur.html">Jabalpur</option>
+        <option value="gwalior.html">Gwalior</option>
+        <option value="ujjain.html">Ujjain</option>
+    </optgroup>
+    <optgroup label="Meghalaya">
+        <option value="shillong.html">Shillong</option>
+    </optgroup>
+    <optgroup label="Mizoram">
+        <option value="aizawl.html">Aizawl</option>
+    </optgroup>
+    <optgroup label="Nagaland">
+        <option value="dimapur.html">Dimapur</option>
+        <option value="kohima.html">Kohima</option>
+    </optgroup>
+    <optgroup label="Odisha">
+        <option value="bhubaneswar.html">Bhubaneswar</option>
+        <option value="cuttack.html">Cuttack</option>
+        <option value="rourkela.html">Rourkela</option>
+        <option value="sambalpur.html">Sambalpur</option>
+        <option value="puri.html">Puri</option>
+    </optgroup>
+    <optgroup label="Punjab">
+        <option value="amritsar.html">Amritsar</option>
+        <option value="jalandhar.html">Jalandhar</option>
+        <option value="ludhiana.html">Ludhiana</option>
+        <option value="patiala.html">Patiala</option>
+        <option value="bathinda.html">Bathinda</option>
+    </optgroup>
+    <optgroup label="Rajasthan">
+        <option value="jaipur.html">Jaipur</option>
+        <option value="jodhpur.html">Jodhpur</option>
+        <option value="kota.html">Kota</option>
+        <option value="bikaner.html">Bikaner</option>
+        <option value="udaipur.html">Udaipur</option>
+    </optgroup>
+    <optgroup label="Tamil Nadu">
+        <option value="chennai.html">Chennai</option>
+        <option value="coimbatore.html">Coimbatore</option>
+        <option value="madurai.html">Madurai</option>
+        <option value="rameshwaram.html">Rameshwaram</option>
+        <option value="vellore.html">Vellore</option>
+    </optgroup>
+    <optgroup label="Sikkim">
+        <option value="gangtok.html">Gangtok</option>
+    </optgroup>
+    <optgroup label="Telangana">
+        <option value="hyderabad.html">Hyderabad</option>
+        <option value="warangal.html">Warangal</option>
+        <option value="nizamabad.html">Nizamabad</option>
+        <option value="karimnagar.html">Karimnagar</option>
+        <option value="ramagundam.html">Ramagundam</option>
+    </optgroup>
+    <optgroup label="Tripura">
+        <option value="agartala.html">Agartala</option>
+    </optgroup>
+    <optgroup label="Uttar Pradesh">
+        <option value="agra.html">Agra</option>
+        <option value="allahabad.html">Allahabad</option>
+        <option value="lucknow.html">Lucknow</option>
+        <option value="kanpur.html">Kanpur</option>
+        <option value="varanasi.html">Varanasi</option>
+    </optgroup>
+    <optgroup label="Uttarakhand">
+        <option value="dehradun.html">Dehradun</option>
+        <option value="haridwar.html">Haridwar</option>
+        <option value="roorkee.html">Roorkee</option>
+        <option value="haldwani.html">Haldwani</option>
+        <option value="rudrapur.html">Rudrapur</option>
+    </optgroup>
+    <optgroup label="West Bengal">
+        <option value="kolkata.html">Kolkata</option>
+        <option value="asansol.html">Asansol</option>
+        <option value="siliguri.html">Siliguri</option>
+        <option value="durgapur.html">Durgapur</option>
+        <option value="bardhaman.html">Bardhaman</option>
+    </optgroup>
+</select>
+<p id="datetime"></p>
+<body>
+<div class="transbox">
+  <img src="weather-app.png" alt="Small Image" style="width: 50px; height: 50px;">
+  <h1 id="temperature" style="font-size: 48px;"></h1>
+  <h1  id="weather" style="font-size: large;"></h1>
+  <br><br>
+  <h2 id="place"></h2>
+  <br>
+    <table>
+            <td>Description</td><td>:</td><td id="description"></td>
+        </tr>
+        <tr>
+            <td>Maximum Temperature</td><td>:</td><td id="maxTemperature"></td>
+        </tr>
+        <tr>
+            <td>Minimum Temperature</td><td>:</td><td id="minTemperature"></td>
+        </tr>
+        <tr>
+            <td>Humidity</td><td>:</td><td id="humidity"></td>
+        </tr>
+        <tr>
+            <td>Ground Level</td><td>:</td><td id="groundLevel"></td>
+        </tr>
+        <tr>
+            <td>Sea Level</td><td>:</td><td id="seaLevel"></td>
+        </tr>
+        <tr>
+            <td>Visibility</td><td>:</td><td id="visibility"></td>
+        </tr>
+        <tr>
+            <td>Wind Speed</td><td>:</td><td id="windSpeed"></td>
+        </tr>
+        <tr>
+            <td>Wind Degree</td><td>:</td><td id="windDegree"></td>
+        </tr>
+        <tr>
+            <td>Wind Gust</td><td>:</td><td id="windGust"></td>
+        </tr>
+    </table>
+</div>
+<div id="map" style="height: 400px; z-index: 1; width: 1190px; margin-left: 30px;"></div>
+
+
+<p>Number of Visitors: <span id="visitorCount">0</span></p>
+</body>
+<script>
+    var map = L.map('map').setView([lat, lon], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+</script>
+
+<script src="datetime.js"></script>
+</html>

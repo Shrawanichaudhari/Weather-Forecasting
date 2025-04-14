@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 100%;
+      max-width: 400px;
+      margin: 10% auto;
+      background-color: rgba(255,255,255,0.8);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      position:relative;
+      z-index: 2;
+      opacity: 1;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    input[type="text"], input[type="password"], input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    button[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 5px;
+      background-color: lightblue;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      box-sizing: border-box;
+    }
+    button[type="submit"]:hover {
+      background-color: rgb(42, 121, 239);
+    }
+    #myVideo {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        z-index: -1;
+        opacity: 0.9;
+    }
+    label {
+        font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+    <video autoplay muted loop id="myVideo">
+        <source src="rain2.mp4" type="video/mp4">
+    </video>
+  <div class="container">
+    <center><h1 style="font-size: 34px;">Skyesque</h1></center>
+    <center><h2>Login</h2></center>
+    <form name="loginForm" method="post"  action="/login">
+      <label for="username">Enter your Username:</label>
+      <input type="text" id="username" name="username" placeholder="Username" required>
+      
+      <label for="password">Enter your Password:</label>
+      <input type="password" id="password" name="password" placeholder="Password" required>
+
+      <!-- Submit button -->
+      <button type="submit" onclick="redirect()">Login</button>
+    </form>
+    <p>Don't remember password, <a href="forgot_password.html">Forgot password</a></p>
+    <p>Not a User? Sign up <a href="signup.html">Here</a></p>
+  </div>
+</body>
+<script>
+  function redirect(){
+    window.location.href = 'madurai.html';
+  }
+</script>
+</html>

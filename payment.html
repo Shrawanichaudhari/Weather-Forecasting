@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body {
+    background-image: url('pay1.jpg');
+    background-size: cover;
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  .transbox {
+    margin: 10% auto;
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 3px solid black;
+    padding: 10px;
+    max-width: 400px;
+    margin-left: 60%;
+    border-radius: 20px;
+    margin-top: 2%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  button {
+    width: 100%;
+    font-size: 20px;
+    background-color: rgba(128, 128, 128, 0.331);
+    border-radius: 5px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  button:hover {
+    background-color: black;
+    color: white;
+  } 
+  #pay {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  .content {
+    margin-bottom: 1%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+</style>
+<script>
+  function openPage() {
+    window.location.href='pay_card.html';
+  }
+</script>
+</head>
+<h1 style="color: white; margin-left: 2%; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Enjoy ad-free browsing,<br> extended forecast periods,<br> and exclusive weather <br>insights</h1>
+<body>
+  <div class="transbox">
+    <table>
+      <tr><div id="content">
+        <td><div id="pay">MODE OF PAYMENT</div></td>
+      </div>
+      </tr>
+      <tr>
+        <td><button onclick="openPage()">Credit/Debit Card</button></td>
+      </tr>
+      <tr>
+        <td><button>NetBanking</button></td>
+      </tr>
+      <tr>
+        <td><button>UPI</button></td>
+      </tr>
+      <tr>
+        <td><button>Wallet (Paytm, PhonePe, Amazon Pay, etc.)</button></td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>
